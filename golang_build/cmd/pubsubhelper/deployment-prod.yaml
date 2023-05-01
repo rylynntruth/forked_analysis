@@ -1,0 +1,59 @@
+# Copyright 2022 The Go Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prod
+  name: pubsubhelper-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pubsubhelper
+  template:
+    metadata:
+      labels:
+        app: pubsubhelper
+      annotations:
+        container.seccomp.security.alpha.kubernetes.io/pubsubhelper: docker/default
+        container.apparmor.security.beta.kubernetes.io/pubsubhelper: runtime/default
+    spec:
+      serviceAccountName: pubsubhelper
+      containers:
+      - name: pubsubhelper
+        image: gcr.io/symbolic-datum-552/pubsubhelper:latest
+        imagePullPolicy: Always
+        command: ["/pubsubhelper", "-listen-http=:80", "-listen-https-autocert=:443", "-autocert-bucket=golang-pubsubhelper-autocert"]
+        ports:
+        - containerPort: 25
+        - containerPort: 80
+        - containerPort: 443
+        resources:
+          requests:
+            cpu: "1"
+            memory: "1Gi"
+          limits:
+            memory: "2Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: prod
+  name: pubsubhelper
+spec:
+  ports:
+    - port: 25
+      targetPort: 25
+      name: smtp
+    - port: 80
+      targetPort: 80
+      name: http
+    - port: 443
+      targetPort: 443
+      name: https
+  selector:
+    app: pubsubhelper
+  type: LoadBalancer
+  loadBalancerIP: 35.184.237.80
