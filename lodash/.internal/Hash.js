@@ -1,6 +1,19 @@
 /** Used to stand-in for `undefined` hash values. */
 const HASH_UNDEFINED = '__lodash_hash_undefined__'
 
+/**
+
+Hash 클래스
+- constructor
+- clear
+- delete
+- get
+- has
+- set
+Hash 객체 사용 시 entries를 매개변수로 부여 만약 entries가 null이면 생성자의 length 변수는 0 아니라면 entries의 length를 저장한다.
+
+*/
+
 class Hash {
 
   /**
