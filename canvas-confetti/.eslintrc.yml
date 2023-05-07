@@ -1,8 +1,8 @@
 extends:
-  - eslint:recommended
+  - eslint:recommended // ESLint 권장 규칙 세트 일반적인 오류를 잡을 수 있게 설계(선언x 변수, 중복 함수 이름 사용)
 env:
   es6: false
   browser: true
   node: true
 rules:
-  semi: [ error, always ]
+  semi: [ error, always ] // semi => 세미콜론 검사 규칙, error => 생략시 오류 발생, never => 세미콜론을 생략해야하는 상황에서 쓰였을 경우 오류, off => 감시 x

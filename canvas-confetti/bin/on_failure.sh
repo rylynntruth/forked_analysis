@@ -1,5 +1,8 @@
-green=`tput setaf 2`
-reset=`tput sgr0`
+# 작업이 실패했을때 실행되는 스크립트 스크린샷을 찍어 파일로 저장하며 이를 transfer.sh를 통해 업로드 실행
+
+green=`tput setaf 2` #setaf -> ANSI Escape Codes 중 색상 지정 코드 2는 녹색을 뜻함
+reset=`tput sgr0` # sgr0 -> 출력할 문자열의 스타일 리셋을 위한 코드 reset은 문자열의 색상 리셋을 위한 코드가 담김
+#tput은 ANSI Escape Codes를 출력하거나 터미널의 속성 값을 리턴하는 역할
 
 line_break () {
   echo --------------------------------------

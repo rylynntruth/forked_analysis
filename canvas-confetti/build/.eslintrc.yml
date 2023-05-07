@@ -1,7 +1,7 @@
 env:
-  es6: true
-  node: true
-  browser: false
-parser: babel-eslint
+  es6: true //ECMAScript6 버전 기능 사용
+  node: true // Node.js 환경에서 코드가 실행될 때의 전역 변수를 사용할 수 있게 함.
+  browser: false // 브라우저 환경에서 실행되는 코드가 아님 고로 브라우저에서 지원하는 전역 변수 사용 x
+parser: babel-eslint // ESLint 코드 파싱 시 사용할 파서 지정. Babel 활용하여 ECMAScript 6+ 코드 파싱 및 분석
 rules:
-  no-console: off
+  no-console: off // console 객체 사용 시 오류 x 디버깅 목적으로 console 사용 허락 ON => console 사용 시 오류

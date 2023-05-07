@@ -6,7 +6,7 @@ on:
     branches: [master]
 
 env:
-  FORCE_COLOR: 1
+  FORCE_COLOR: 1 // ANSI 색상 코드 적용
 
 jobs:
   test:
